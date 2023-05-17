@@ -7,15 +7,13 @@ class GameLogic :
     
     
     def roll_dice(num_dice=6):
-        """
-        Rolls the six dice.
+        """_summary_
 
-        Parameters:
-        num_dice (int): The number of dice to roll.
+        Args:
+            num_dice (int, optional): _description_. Defaults to 6.
 
         Returns:
-        tuple: A tuple containing the values of the six dice rolled.
-
+            _type_: _description_
         """
         dice_values = []
         for i in range(num_dice):
@@ -54,12 +52,18 @@ class GameLogic :
 
         # Calculate the score for four-of-a-kind
         for value, count in enumerate(dice_counts, 1):
+            
             if count >= 4:
-                score += value * 100
+                if value == 5 :
+                  score += value * 100 -50
+                elif value ==1:
+                    score += 900
+                else : 
+                  score += value * 100
 
         # Calculate the score for a straight
         if all(dice_counts[i] == 1 for i in range(6)):
-            score += 1350 
+            score += 1350
 
         # Calculate the score for three pairs
         if dice_counts.count(2) == 3:
@@ -69,7 +73,9 @@ class GameLogic :
         if 5 in dice_counts:
             value = dice_counts.index(5) + 1
             if value == 1:
-                score += 2000
+                score += 900
+            elif value ==5:
+                score += 450  
             else:
                 score += value * 100
 
@@ -77,7 +83,9 @@ class GameLogic :
         if 6 in dice_counts:
             value = dice_counts.index(6) + 1
             if value == 1:
-                score +=2600
+                score +=1800
+            elif value ==5:
+                score += 900
             else:
                 score += value * 200
 
