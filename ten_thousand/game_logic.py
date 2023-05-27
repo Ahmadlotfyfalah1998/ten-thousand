@@ -208,8 +208,20 @@ class GameLogic :
             elif value not in roll: 
                 return False
         return True
-
-
+    @staticmethod
+    def get_scorers(dice):
+        all_dice_score=GameLogic.calculate_scorers(dice)
+        if all_dice_score == 0:
+            return tuple()
+        scorers=[]
+        
+        for i,val in enumerate(dice):
+            sub_roll=dice[:i]+dice[i+1:]
+            sub_score=GameLogic.calculate_scorers(sub_roll)
+            if sub_score != all_dice_score:
+                scorers.append(val)
+        return tuple(scorers)
+            
 if __name__ == "__main__":
     game = GameLogic()
     game.play_game()

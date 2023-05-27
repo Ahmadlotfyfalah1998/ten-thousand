@@ -152,3 +152,4 @@ if __name__ == "__main__":
     num_games = 100
     NervousNellie.play(num_games)
     YourBot.play(num_games)
+    print('hi')
